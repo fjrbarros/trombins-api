@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  # app:
+  #   container_name: container-trombins-api
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3333:3333'
+  #   stdin_open: true
+  #   tty: true
+  #   volumes:
+  #     - ".:/app"
+  #     - "/app/node_modules"
+  #   environment:
+  #     DB_HOST: host.docker.internal
+  #     DB_USER: admin
+  #     DB_PASS: admin123
+
+  database:
+    container_name: container-trombins-database
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=trombinsdb
+    ports:
+      - '5432:5432'
+    restart: always
+
+  pgadmin:
+    container_name: container-trombins-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@develop.com
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+    ports:
+      - '5050:80'
+    restart: always
+    volumes:
+      - pgadmin:/root/.pgadmin
+volumes:
+  app:
+  database:
+  pgadmin:

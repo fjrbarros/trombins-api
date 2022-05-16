@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "host": "172.18.0.2",
+  "port": 5432,
+  "username": "admin",
+  "password": "admin123",
+  "database": "trombinsdb",
+  "entities": ["src/app/entity/**/*.ts"],
+  "migrations": ["src/database/migrations/**/*.ts"],
+  "cli": {
+    "migrationsDir": "src/database/migrations"
+  }
+}
